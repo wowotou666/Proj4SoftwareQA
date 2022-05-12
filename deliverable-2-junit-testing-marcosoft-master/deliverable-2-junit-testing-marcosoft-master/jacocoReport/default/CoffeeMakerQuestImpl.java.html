@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoffeeMakerQuestImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">CoffeeMakerQuestImpl.java</span></div><h1>CoffeeMakerQuestImpl.java</h1><pre class="source lang-java linenums">import java.util.*;
+
+public class CoffeeMakerQuestImpl implements CoffeeMakerQuest {
+
+	// TODO: Add more member variables and methods as needed.
+	private Player player;
+	private boolean flag;
+	private ArrayList&lt;Room&gt; roomList;
+	private Room currentIn;
+
+<span class="fc" id="L11">	CoffeeMakerQuestImpl() {</span>
+		// TODO
+<span class="fc" id="L13">		flag = false;</span>
+<span class="fc" id="L14">		roomList = new ArrayList&lt;Room&gt;();</span>
+<span class="fc" id="L15">		currentIn = null;</span>
+<span class="fc" id="L16">	}</span>
+
+	/**
+	 * Whether the game is over. The game ends when the player drinks the coffee.
+	 * 
+	 * @return true if successful, false otherwise
+	 */
+	public boolean isGameOver() {
+		// TODO
+<span class="fc" id="L25">		return flag;</span>
+	}
+
+	/**
+	 * Set the player to p.
+	 * 
+	 * @param p the player
+	 */
+	public void setPlayer(Player p) {
+		// TODO
+<span class="fc" id="L35">		player = p;</span>
+<span class="fc" id="L36">	}</span>
+	
+	/**
+	 * Add the first room in the game. If room is null or if this not the first room
+	 * (there are pre-exiting rooms), the room is not added and false is returned.
+	 * 
+	 * @param room the room to add
+	 * @return true if successful, false otherwise
+	 */
+	public boolean addFirstRoom(Room room) {
+		// TODO
+<span class="pc bpc" id="L47" title="1 of 4 branches missed.">		if (room == null || roomList.size() != 0) {</span>
+<span class="fc" id="L48">			return false;</span>
+		}
+<span class="fc" id="L50">		roomList.add(room);</span>
+<span class="fc" id="L51">		return true;</span>
+	}
+
+	/**
+	 * Attach room to the northern-most room. If either room, northDoor, or
+	 * southDoor are null, the room is not added. If there are no pre-exiting rooms,
+	 * the room is not added. If room is not a unique room (a pre-exiting room has
+	 * the same adjective or furnishing), the room is not added. If all these tests
+	 * pass, the room is added. Also, the north door of the northern-most room is
+	 * labeled northDoor and the south door of the added room is labeled southDoor.
+	 * Of course, the north door of the new room is still null because there is
+	 * no room to the north of the new room.
+	 * 
+	 * @param room      the room to add
+	 * @param northDoor string to label the north door of the current northern-most room
+	 * @param southDoor string to label the south door of the newly added room
+	 * @return true if successful, false otherwise
+	 */
+	public boolean addRoomAtNorth(Room room, String northDoor, String southDoor) {
+		// TODO
+<span class="pc bpc" id="L71" title="3 of 6 branches missed.">		if (room == null || northDoor == null || southDoor == null) {</span>
+<span class="nc" id="L72">			return false;</span>
+		}
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		for(Room i:roomList) {</span>
+<span class="pc bpc" id="L75" title="1 of 4 branches missed.">			if (i.getFurnishing().equals(room.getFurnishing()) || i.getAdjective().equals(room.getAdjective())) {</span>
+<span class="fc" id="L76">				return false;</span>
+			}
+<span class="fc" id="L78">		}</span>
+<span class="fc" id="L79">		roomList.get(roomList.size() - 1).setNorthDoor(northDoor);</span>
+<span class="fc" id="L80">		roomList.add(room);</span>
+<span class="fc" id="L81">		roomList.get(roomList.size() - 1).setSouthDoor(southDoor);</span>
+<span class="fc" id="L82">		return true;</span>
+	}
+
+	/**
+	 * Returns the room the player is currently in. If location of player has not
+	 * yet been initialized with setCurrentRoom, returns null.
+	 * 
+	 * @return room player is in, or null if not yet initialized
+	 */ 
+	public Room getCurrentRoom() {
+		// TODO
+<span class="fc" id="L93">		return currentIn;</span>
+	}
+	
+	/**
+	 * Set the current location of the player. If room does not exist in the game,
+	 * then the location of the player does not change and false is returned.
+	 * 
+	 * @param room the room to set as the player location
+	 * @return true if successful, false otherwise
+	 */
+	public boolean setCurrentRoom(Room room) {
+		// TODO
+<span class="fc bfc" id="L105" title="All 2 branches covered.">		if (roomList.contains(room)){</span>
+<span class="fc" id="L106">			currentIn = room;</span>
+<span class="fc" id="L107">			return true;</span>
+		}
+<span class="fc" id="L109">		return false;</span>
+	}
+	
+	/**
+	 * Get the instructions string command prompt. It returns the following prompt:
+	 * &quot; INSTRUCTIONS (N,S,L,I,D,H) &gt; &quot;.
+	 * 
+	 * @return comamnd prompt string
+	 */
+	public String getInstructionsString() {
+		// TODO
+<span class="fc" id="L120">		return &quot; INSTRUCTIONS (N,S,L,I,D,H) &gt; &quot;;</span>
+	}
+	
+	/**
+	 * Processes the user command given in String cmd and returns the response
+	 * string. For the list of commands, please see the Coffee Maker Quest
+	 * requirements documentation (note that commands can be both upper-case and
+	 * lower-case). For the response strings, observe the response strings printed
+	 * by coffeemaker.jar. The &quot;N&quot; and &quot;S&quot; commands potentially change the location
+	 * of the player. The &quot;L&quot; command potentially adds an item to the player
+	 * inventory. The &quot;D&quot; command drinks the coffee and ends the game. Make
+     * sure you use Player.getInventoryString() whenever you need to display
+     * the inventory.
+	 * 
+	 * @param cmd the user command
+	 * @return response string for the command
+	 */
+	public String processCommand(String cmd) {
+		// TODO
+<span class="fc" id="L139">		String result = &quot;&quot;;</span>
+<span class="fc" id="L140">		cmd = cmd.toLowerCase();</span>
+<span class="pc bpc" id="L141" title="1 of 7 branches missed.">		switch (cmd){</span>
+			case &quot;n&quot;:
+<span class="pc bpc" id="L143" title="1 of 2 branches missed.">				if (roomList.indexOf(currentIn) &lt; roomList.size() - 1) {</span>
+<span class="fc" id="L144">					currentIn = roomList.get(roomList.indexOf(currentIn) + 1);</span>
+//					return getInstructionsString() + currentIn.getDescription();
+				} else {
+<span class="nc" id="L147">					result += &quot;A door in that direction does not exist.\n&quot;;</span>
+				}
+<span class="nc" id="L149">				break;</span>
+			case &quot;s&quot;:
+<span class="pc bpc" id="L151" title="1 of 2 branches missed.">				if (roomList.indexOf(currentIn) &gt; 0) {</span>
+<span class="nc" id="L152">					currentIn = roomList.get(roomList.indexOf(currentIn) - 1);</span>
+//					return getInstructionsString() + currentIn.getDescription();
+				} else {
+<span class="fc" id="L155">					result += &quot;A door in that direction does not exist.\n&quot;;</span>
+				}
+<span class="fc" id="L157">				break;</span>
+			case &quot;l&quot;:
+<span class="fc bfc" id="L159" title="All 2 branches covered.">				if (currentIn.getItem() != Item.NONE) {</span>
+<span class="fc" id="L160">					String temp = &quot;&quot;;</span>
+<span class="fc" id="L161">					player.addItem(currentIn.getItem());</span>
+<span class="pc bpc" id="L162" title="1 of 4 branches missed.">					switch (currentIn.getItem()) {</span>
+						case CREAM:
+<span class="fc" id="L164">							temp = &quot;creamy cream&quot;;</span>
+<span class="fc" id="L165">							break;</span>
+						case COFFEE:
+<span class="fc" id="L167">							temp = &quot;caffeinated coffee&quot;;</span>
+<span class="fc" id="L168">							break;</span>
+						case SUGAR:
+<span class="fc" id="L170">							temp = &quot;sweet sugar&quot;;</span>
+							break;
+					}
+<span class="fc" id="L173">					result += &quot;There might be something here...\n&quot; +</span>
+							&quot;You found some &quot; + temp + &quot;!\n&quot;;
+<span class="fc" id="L175">				} else {</span>
+<span class="fc" id="L176">					result += &quot;You don't see anything out of the ordinary.\n&quot;;</span>
+				}
+<span class="fc" id="L178">				break;</span>
+			case &quot;i&quot;:
+<span class="fc" id="L180">				result += player.getInventoryString();</span>
+<span class="fc" id="L181">				break;</span>
+			case &quot;d&quot;:
+<span class="fc" id="L183">				flag = true;</span>
+<span class="fc" id="L184">				result += player.getInventoryString();</span>
+<span class="fc" id="L185">				result += &quot;\n&quot;;</span>
+<span class="fc" id="L186">				result += endingHelper(player.checkCoffee(), player.checkCream(), player.checkSugar());</span>
+<span class="fc" id="L187">				break;</span>
+			case &quot;h&quot;:
+<span class="fc" id="L189">				result += &quot;N - Go north\n&quot; +</span>
+						&quot;S - Go south\n&quot; +
+						&quot;L - Look and collect any items in the room\n&quot; +
+						&quot;I - Show inventory of items collected\n&quot; +
+						&quot;D - Drink coffee made from items in inventory\n&quot;;
+				break;
+		}
+
+<span class="fc" id="L197">		return result;</span>
+	}
+
+	private String endingHelper(boolean isCoffee, boolean isCream, boolean isSugar) {
+<span class="fc" id="L201">		String result = &quot;&quot;;</span>
+<span class="fc bfc" id="L202" title="All 6 branches covered.">		if (isCoffee &amp;&amp; isCream &amp;&amp; isSugar) {</span>
+<span class="fc" id="L203">			result += &quot;You drink the beverage and are ready to study!\n&quot; +</span>
+					&quot;You win!\n&quot;;
+<span class="fc bfc" id="L205" title="All 6 branches covered.">		} else if (!isCoffee &amp;&amp; isCream &amp;&amp; isSugar) {</span>
+<span class="fc" id="L206">			result += &quot;You drink the sweetened cream, but without caffeine you cannot study.\n&quot; +</span>
+					&quot;You lose!\n&quot;;
+<span class="fc bfc" id="L208" title="All 6 branches covered.">		} else if (isCoffee &amp;&amp; !isCream &amp;&amp; isSugar) {</span>
+<span class="fc" id="L209">			result += &quot;Without cream, you get an ulcer and cannot study.\n&quot; +</span>
+					&quot;You lose!\n&quot;;
+<span class="pc bpc" id="L211" title="1 of 6 branches missed.">		} else if (isCoffee &amp;&amp; isCream &amp;&amp; !isSugar) {</span>
+<span class="fc" id="L212">			result += &quot;Without sugar, the coffee is too bitter. You cannot study.\n&quot; +</span>
+					&quot;You lose!\n&quot;;
+<span class="fc bfc" id="L214" title="All 6 branches covered.">		} else if (!isCoffee &amp;&amp; !isCream &amp;&amp; isSugar) {</span>
+<span class="fc" id="L215">			result += &quot;You eat the sugar, but without caffeine, you cannot study.\n&quot; +</span>
+					&quot;You lose!\n&quot;;
+<span class="pc bpc" id="L217" title="1 of 6 branches missed.">		} else if (!isCoffee &amp;&amp; isCream &amp;&amp; !isSugar) {</span>
+<span class="fc" id="L218">			result += &quot;You drink the cream, but without caffeine, you cannot study.\n&quot; +</span>
+					&quot;You lose!\n&quot;;
+<span class="pc bpc" id="L220" title="2 of 6 branches missed.">		} else if (isCoffee &amp;&amp; !isCream &amp;&amp; !isSugar) {</span>
+<span class="fc" id="L221">			result += &quot;Without cream, you get an ulcer and cannot study.\n&quot; +</span>
+					&quot;You lose!\n&quot;;
+<span class="pc bpc" id="L223" title="3 of 6 branches missed.">		} else if (!isCoffee &amp;&amp; !isCream &amp;&amp; !isSugar) {</span>
+<span class="fc" id="L224">			result += &quot;You drink the air, as you have no coffee, sugar, or cream.\n&quot; +</span>
+					&quot;The air is invigorating, but not invigorating enough. You cannot study.\n&quot; +
+					&quot;You lose!\n&quot;;
+		}
+<span class="fc" id="L228">		return result;</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202101150304</span></div></body></html>

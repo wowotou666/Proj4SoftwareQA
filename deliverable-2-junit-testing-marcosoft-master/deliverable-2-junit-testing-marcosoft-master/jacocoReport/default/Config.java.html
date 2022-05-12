@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Config.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCo Coverage Report</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Config.java</span></div><h1>Config.java</h1><pre class="source lang-java linenums"><span class="nc" id="L1">public class Config {</span>
+	// Whether to intentionally inject bugs into CoffeeMakerQuest.
+<span class="fc" id="L3">	private static boolean buggyCoffeeMakerQuest = false;</span>
+	// Whether to intentionally inject bugs into Player.
+<span class="fc" id="L5">	private static boolean buggyPlayer = false;</span>
+	// Whether to intentionally inject bugs into Room.
+<span class="fc" id="L7">	private static boolean buggyRoom = false;</span>
+	
+	public static void setBuggyCoffeeMakerQuest(boolean val) {
+<span class="nc" id="L10">		buggyCoffeeMakerQuest = val;</span>
+<span class="nc" id="L11">	}</span>
+	public static void setBuggyPlayer(boolean val) {
+<span class="fc" id="L13">		buggyPlayer = val;</span>
+<span class="fc" id="L14">	}</span>
+	public static void setBuggyRoom(boolean val) {
+<span class="fc" id="L16">		buggyRoom = val;</span>
+<span class="fc" id="L17">	}</span>
+	public static boolean getBuggyCoffeeMakerQuest() {
+<span class="fc" id="L19">		return buggyCoffeeMakerQuest;</span>
+	}
+	public static boolean getBuggyPlayer() {
+<span class="nc" id="L22">		return buggyPlayer;</span>
+	}
+	public static boolean getBuggyRoom() {
+<span class="nc" id="L25">		return buggyRoom;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202101150304</span></div></body></html>
