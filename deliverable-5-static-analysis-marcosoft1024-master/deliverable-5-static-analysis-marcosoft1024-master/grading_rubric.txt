@@ -1,0 +1,57 @@
+Report content (25%):
+
+Summary of your experience:                               _____ / 5
+  * Your experiences with TDD (-3 if none)
+  * Discussion of various layers of testing (-2 if none)
+
+Screenshots of JUnit Coverage:                            _____ / 5
+  * Screenshot shows coverage for BeanCounterLogic, Bean (-5 if not)
+  * Screenshot shows above 80% coverage for both (-5 if not)
+
+Summary of Model Checking:                                _____ / 5
+  * Screenshot or paste of results of running runJPF.bat (-2 if none)
+  * Description of additional assertion you wrote (-3 if none)
+
+Manual Test Cases:                                        _____ / 10
+  * At least one test case per requirement (-1 per each missing)
+  * Test cases are well-formed with necessary fields (-5 if not)
+  * Traceability matrix (-5 if none)
+
+Testing Code (35%):
+
+JUnit Test Code:                                          _____ / 15
+  * At least one unit test per method (-1 per each missing)
+  * Mocks dependent classes (-5 if not)
+  * No randomness during unit testing (-5 if not)
+
+Model Checking Code:                                      _____ / 10
+  * Verify API used to explore range of inputs (-5 if not)
+  * Two required invariant assertions implemented (-3 if not)
+  * One additional invariant assertion implemented (-2 if not)
+
+Checkstyle / Spotbugs Audits Pass:                        _____ / 10
+  * -1 per each warning message
+
+Source Code (40%):
+
+All features in requirements implemented correctly:       _____ / 40
+  * -5 per each unreported defect
+  * -3 per each reported defect
+    (must be described in first page of report, along with how you found it) 
+  * Remember, your program will be tested rigorously!
+
+-----
+
+Extra Credit (10%):
+
+Work that goes above and beyond:                          _____ / 10
+  * Under the discretion of the instructor and TA
+  * Example: finding a bug in skeleton code and fixing it
+  * Example: writing several additional assertions for model checker
+
+-----
+
+Total:                                                    _____ / 100
+
+
+
